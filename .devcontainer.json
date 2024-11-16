@@ -1,12 +1,7 @@
 {
-    "name": "Project 4 Task 2",
     "build": {
         "dockerfile": "Dockerfile"
     },
     "forwardPorts": [8080],
-    "customizations": {
-        "vscode": {
-            "extensions": []
-        }
-    }
+    "postCreateCommand": "catalina.sh run"
 }
