@@ -1,12 +1,5 @@
-FROM maven:3.8.4-openjdk-11-slim as builder
+# Use a Linix image with Tomcat 10
+FROM tomcat:10.1.0-M5-jdk16-openjdk-slim-bullseye
 
-# Copy the WAR file
-COPY ROOT.war /ROOT.war
-
-FROM tomee:9.1.0-jre11-alpine-webprofile
-
-# Copy the WAR file from builder
-COPY --from=builder /ROOT.war /usr/local/tomee/webapps/ROOT.war
-
-# Expose port 8080
-EXPOSE 8080
+# Copy in our ROOT.war to the right place in the container
+COPY ROOT.war /usr/local/tomcat/webapps/
