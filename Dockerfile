@@ -1,15 +1,21 @@
-# Dockerfile
-FROM tomcat:10.1-jdk11-openjdk-slim
+FROM ubuntu:20.04
+
+ENV DEBIAN_FRONTEND=noninteractive
+
+# Install required packages
+RUN apt-get update && apt-get install -y \
+    tomcat9 \
+    default-jdk \
+    && rm -rf /var/lib/apt/lists/*
 
 # Remove default webapps
-RUN rm -rf /usr/local/tomcat/webapps/*
+RUN rm -rf /var/lib/tomcat9/webapps/*
 
 # Copy the WAR file
-COPY ROOT.war /usr/local/tomcat/webapps/
+COPY ROOT.war /var/lib/tomcat9/webapps/
 
-# Make scripts executable
-RUN chmod +x /usr/local/tomcat/bin/*.sh
-
+# Expose port 8080
 EXPOSE 8080
 
-CMD ["/usr/local/tomcat/bin/catalina.sh", "run"]
+# Start Tomcat service
+CMD service tomcat9 start && tail -f /var/log/tomcat9/catalina.out
