@@ -1,17 +1,18 @@
 {
-    "name": "Anime Search App",
-    "build": {
-        "dockerfile": "Dockerfile",
-        "context": "."
+    "name": "Java",
+    "image": "mcr.microsoft.com/devcontainers/java:11",
+    "features": {
+        "ghcr.io/devcontainers/features/java:1": {
+            "version": "11",
+            "installMaven": true
+        }
     },
-    "forwardPorts": [8080],
-    "postCreateCommand": "mvn clean package && cp target/ROOT.war /usr/local/tomcat/webapps/ && catalina.sh run",
     "customizations": {
         "vscode": {
             "extensions": [
-                "vscjava.vscode-java-pack",
-                "redhat.vscode-xml"
+                "vscjava.vscode-java-pack"
             ]
         }
-    }
+    },
+    "forwardPorts": [8080]
 }
