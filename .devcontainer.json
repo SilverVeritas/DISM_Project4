@@ -1,7 +1,17 @@
 {
+    "name": "Anime Search App",
     "build": {
-        "dockerfile": "Dockerfile"
+        "dockerfile": "Dockerfile",
+        "context": "."
     },
     "forwardPorts": [8080],
-    "postCreateCommand": "catalina.sh run"
+    "postCreateCommand": "mvn clean package && cp target/ROOT.war /usr/local/tomcat/webapps/ && catalina.sh run",
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "vscjava.vscode-java-pack",
+                "redhat.vscode-xml"
+            ]
+        }
+    }
 }
