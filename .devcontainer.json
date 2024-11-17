@@ -1,6 +1,11 @@
 {
-    "name": "Java",
-    "image": "mcr.microsoft.com/devcontainers/java:11",
+    "name": "Anime Search App",
+    "build": {
+        "dockerfile": "Dockerfile",
+        "context": "."
+    },
+    "forwardPorts": [8080],
+    "postCreateCommand": "service tomcat9 start",
     "features": {
         "ghcr.io/devcontainers/features/java:1": {
             "version": "11",
@@ -13,6 +18,5 @@
                 "vscjava.vscode-java-pack"
             ]
         }
-    },
-    "forwardPorts": [8080]
+    }
 }
