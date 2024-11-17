@@ -1,22 +1,7 @@
 {
-    "name": "Anime Search App",
     "build": {
-        "dockerfile": "Dockerfile",
-        "context": "."
+        "dockerfile": "Dockerfile"
     },
     "forwardPorts": [8080],
-    "postCreateCommand": "service tomcat9 start",
-    "features": {
-        "ghcr.io/devcontainers/features/java:1": {
-            "version": "11",
-            "installMaven": true
-        }
-    },
-    "customizations": {
-        "vscode": {
-            "extensions": [
-                "vscjava.vscode-java-pack"
-            ]
-        }
-    }
+    "postCreateCommand": "catalina.sh run"
 }
